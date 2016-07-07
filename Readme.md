@@ -1,11 +1,12 @@
 # Say What?...Lite
 This script listens to ambient audio and pings Slack or Hipchat when the followed name is mentioned.
 
-It sends a transcript of what was said in context to the name to the preferred messaging service (Slack or Hipchat).
+It sends a transcript of what was said, in reference to the name, to the preferred messaging service (Slack or Hipchat).
 
 Uses IBM's Speech to Text Watson API for the audio-to-text.
 
 The two main differences between this *lite* version and joshnewlan's full proper version is:
+
 1.	I've added a Slack option.
 2.	I've removed Splunk and all logging.  When the result comes back from IBM, it goes straight to your messenger.  I removed this because, for me, that added a layer to something that was already kinda slow.  This makes it run just a little bit smoother, but there is no history to reference.  It's a trade-off.
 
