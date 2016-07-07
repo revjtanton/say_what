@@ -1,28 +1,23 @@
-# Say What?
-This script listens to meetings I'm supposed to be paying attention to and pings me on hipchat when my name is mentioned.
+# Say What?...Lite
+This script listens to ambient audio and pings Slack or Hipchat when the followed name is mentioned.
 
-It sends me a transcript of what was said in the minute before my name was mentioned and some time after. 
+It sends a transcript of what was said in context to the name to the preferred messaging service (Slack or Hipchat).
 
-It also plays an audio file out loud 15 seconds after my name was mentioned which is a recording of me saying, "Sorry, I didn't realize my mic was on mute there."
+Uses IBM's Speech to Text Watson API for the audio-to-text.
 
-Uses IBM's Speech to Text Watson API for the audio-to-text. 
-
-Currently relies on Splunk as a data store, but can be extended to use an open-source tool instead.
+The two main differences between this *lite* version and joshnewlan's full proper version is:
+1.	I've added a Slack option.
+2.	I've removed Splunk and all logging.  When the result comes back from IBM, it goes straight to your messenger.  I removed this because, for me, that added a layer to something that was already kinda slow.  This makes it run just a little bit smoother, but there is no history to reference.  It's a trade-off.
 
 Relies on Uberi's SpeechRecognition PyAudio and API wrapper: https://github.com/Uberi/speech_recognition
 
 ##Installation (OS X)
 
-1. [Sign up for, install, and run Splunk Enterprise](http://www.splunk.com/en_us/download-5.html)
-	* This has to be enterprise; the HTTP Event Collector feature used here doesn't exist in light
-2. Add your credentials to ```CREDS``` in say\_my\_name.py
-3. [Add an http event collector to Splunk](http://localhost:8000/en-US/manager/launcher/http-eventcollector) and enable it in global settings (but do not enable acknowledgement)
-4. [Get a hipchat API token](https://[your company].hipchat.com/account/api) and update the hipchat fields in say\_my\_name.py
-	* Your hipchat user id is the second number in your hipchat jabber info
-5. Update ```name``` in say\_my\_name.py unless your name is Josh
+1. Get a [Slack](https://api.slack.com) or [Hipchat](https://www.hipchat.com/docs/apiv2) API token via instructions linked and update applicable variables in say\_what\_lite.py
+2. Update ```name``` and choose ```platform``` (either *slack* or *hipchat*) in say\_what\_lite.py
 6. [Create an IBM Bluemix account](https://console.ng.bluemix.net/registration/)
 7. [Add a speech-to-text plan](https://new-console.ng.bluemix.net/catalog/services/speech-to-text/)
-8. Add your credentials to say\_what.py for ```IBM_USERNAME``` and ```IBM_PASSWORD```
+8. Add your credentials to say\_what\_lite.py for ```IBM_USERNAME``` and ```IBM_PASSWORD```
 9. [Install Homebrew](http://brew.sh/)
 10. ```brew install python```
 11. ```brew install portaudio```
@@ -32,7 +27,4 @@ Relies on Uberi's SpeechRecognition PyAudio and API wrapper: https://github.com/
 
 ##Usage
 
-1. Start Splunk
-2. Run say_what.py
-
-### TODO: Improve usage
+1. Run say_what.py
