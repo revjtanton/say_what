@@ -28,4 +28,4 @@ Relies on Uberi's SpeechRecognition PyAudio and API wrapper: https://github.com/
 
 ##Usage
 
-1. Run say_what.py
+1. Run say_what_lite.py
